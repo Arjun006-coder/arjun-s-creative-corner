@@ -42,13 +42,13 @@ const SkillOrbit = ({ isInView }: { isInView: boolean }) => {
   const orbitSkills = ["Python", "Java", "React", "PyTorch", "Flask", "Git"];
   
   return (
-    <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+    <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto flex items-center justify-center">
       {/* Center core */}
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ duration: 0.5 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center glow-box"
+        className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center glow-box z-10"
       >
         <span className="text-2xl font-bold text-primary-foreground">AA</span>
       </motion.div>
@@ -56,46 +56,31 @@ const SkillOrbit = ({ isInView }: { isInView: boolean }) => {
       {/* Orbital ring */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.2, rotate: 360 } : {}}
-        transition={{ 
-          opacity: { duration: 0.5 },
-          rotate: { duration: 30, repeat: Infinity, ease: "linear" }
-        }}
-        className="absolute inset-0 border-2 border-dashed border-primary/30 rounded-full"
+        animate={isInView ? { opacity: 0.3 } : {}}
+        transition={{ duration: 0.5 }}
+        className="absolute w-56 h-56 md:w-72 md:h-72 border-2 border-dashed border-primary/30 rounded-full"
       />
 
       {/* Orbiting skills */}
       {orbitSkills.map((skill, index) => {
         const angle = (index * 360) / orbitSkills.length;
-        const radius = 120;
+        const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 130;
+        const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
+        const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
         
         return (
           <motion.div
             key={skill}
-            initial={{ opacity: 0 }}
-            animate={isInView ? {
-              opacity: 1,
-              rotate: 360,
-            } : {}}
-            transition={{
-              opacity: { delay: 0.5 + index * 0.1 },
-              rotate: { duration: 25, repeat: Infinity, ease: "linear" }
-            }}
-            className="absolute top-1/2 left-1/2 w-0 h-0"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
+            className="absolute glass-card px-3 py-1.5 rounded-full mono-text text-xs whitespace-nowrap"
             style={{
-              transformOrigin: '0 0',
+              transform: `translate(${x}px, ${y}px)`,
             }}
+            whileHover={{ scale: 1.15, zIndex: 20 }}
           >
-            <motion.div
-              className="glass-card px-3 py-1.5 rounded-full mono-text text-xs whitespace-nowrap"
-              style={{
-                transform: `rotate(${angle}deg) translateX(${radius}px) rotate(-${angle}deg)`,
-              }}
-              animate={{ rotate: -360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            >
-              {skill}
-            </motion.div>
+            {skill}
           </motion.div>
         );
       })}

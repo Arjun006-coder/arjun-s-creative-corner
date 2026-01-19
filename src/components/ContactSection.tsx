@@ -69,8 +69,8 @@ const ContactSection = () => {
             {/* Social links */}
             <div className="flex justify-center gap-4 mb-10">
               {[
-                { icon: Github, href: "#", label: "GitHub" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/Arjun006-coder", label: "GitHub" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/arjun-agrawal-ab82a5328/", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:arjun1234agrawal@gmail.com", label: "Email" },
               ].map((social) => (
                 <motion.a
