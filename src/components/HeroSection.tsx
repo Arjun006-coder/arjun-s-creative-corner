@@ -10,7 +10,7 @@ const HeroSection = () => {
       <div className="floating-orb w-64 h-64 bg-primary/50 bottom-20 left-1/4 animate-pulse-glow" style={{ animationDelay: '4s' }} />
 
       {/* Grid pattern overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
@@ -25,7 +25,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.p 
+          <motion.p
             className="mono-text text-primary mb-4 text-sm md:text-base tracking-widest"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -34,7 +34,7 @@ const HeroSection = () => {
             &lt;hello world /&gt;
           </motion.p>
 
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const HeroSection = () => {
             </span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ const HeroSection = () => {
             Computer Science Student • AI Enthusiast • Problem Solver
           </motion.p>
 
-          <motion.p 
+          <motion.p
             className="text-muted-foreground max-w-xl mx-auto mb-8 text-base md:text-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -64,27 +64,35 @@ const HeroSection = () => {
             Building socially impactful solutions with AI, system design, and modern developer tools.
           </motion.p>
 
-          {/* Resume Download Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="mb-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
           >
             <motion.a
               href="/resume.pdf"
               download="Arjun_Agrawal_Resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box w-full sm:w-auto justify-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Download className="w-5 h-5" />
               Download Resume
             </motion.a>
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card border-primary/20 text-foreground font-semibold transition-all duration-300 hover:bg-primary/10 w-full sm:w-auto justify-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="w-5 h-5" />
+              Get in Touch
+            </motion.a>
           </motion.div>
 
           {/* Social links */}
-          <motion.div 
+          <motion.div
             className="flex justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,7 +124,7 @@ const HeroSection = () => {
         className="absolute bottom-6 left-0 right-0 flex justify-center z-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ 
+        transition={{
           opacity: { delay: 1.2 },
           y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
         }}

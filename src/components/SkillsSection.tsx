@@ -39,51 +39,95 @@ const SkillPill = ({ skill, index, color }: { skill: string; index: number; colo
 );
 
 const SkillOrbit = ({ isInView }: { isInView: boolean }) => {
-  const orbitSkills = ["Python", "Java", "React", "PyTorch", "Flask", "Git"];
-  
+  const orbitSkills = [
+    // Ring 1 (Inner) - Core Languages
+    { name: "Python", r: 1 }, { name: "Java", r: 1 }, { name: "C++", r: 1 }, { name: "JavaScript", r: 1 },
+    // Ring 2 (Middle) - Frameworks & AI
+    { name: "React", r: 2 }, { name: "PyTorch", r: 2 }, { name: "Flask", r: 2 }, { name: "YOLO", r: 2 },
+    { name: "NumPy", r: 2 }, { name: "Pandas", r: 2 },
+    // Ring 3 (Outer) - Tools & Infrastructure
+    { name: "Git", r: 3 }, { name: "Supabase", r: 3 }, { name: "Docker", r: 3 }, { name: "Vercel", r: 3 },
+    { name: "Hugging Face", r: 3 }, { name: "Groq", r: 3 }, { name: "Tailwind", r: 3 }, { name: "PostgreSQL", r: 3 }
+  ];
+
   return (
-    <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto flex items-center justify-center">
+    <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] mx-auto flex items-center justify-center">
       {/* Center core */}
       <motion.div
         initial={{ scale: 0 }}
         animate={isInView ? { scale: 1 } : {}}
         transition={{ duration: 0.5 }}
-        className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center glow-box z-10"
+        className="absolute w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center glow-box z-30 shadow-[0_0_50px_rgba(155,135,245,0.4)] border-2 border-white/20"
       >
-        <span className="text-2xl font-bold text-primary-foreground">AA</span>
+        <span className="text-3xl font-bold text-primary-foreground tracking-tighter">AA</span>
       </motion.div>
 
-      {/* Orbital ring */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 0.3 } : {}}
-        transition={{ duration: 0.5 }}
-        className="absolute w-56 h-56 md:w-72 md:h-72 border-2 border-dashed border-primary/30 rounded-full"
-      />
-
-      {/* Orbiting skills */}
-      {orbitSkills.map((skill, index) => {
-        const angle = (index * 360) / orbitSkills.length;
-        const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 130;
-        const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
-        const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
-        
-        return (
-          <motion.div
-            key={skill}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
-            className="absolute glass-card px-3 py-1.5 rounded-full mono-text text-xs whitespace-nowrap"
+      {/* Orbit Rings Container */}
+      {[1, 2, 3].map((ring) => (
+        <motion.div
+          key={ring}
+          animate={{ rotate: ring % 2 === 0 ? 360 : -360 }}
+          transition={{ duration: 40 + ring * 10, repeat: Infinity, ease: "linear" }}
+          className="absolute w-full h-full flex items-center justify-center pointer-events-none"
+        >
+          {/* Orbital path line */}
+          <div
+            className="absolute border border-dashed border-primary/10 rounded-full"
             style={{
-              transform: `translate(${x}px, ${y}px)`,
+              width: `${(ring + 1) * 25}%`,
+              height: `${(ring + 1) * 25}%`
             }}
-            whileHover={{ scale: 1.15, zIndex: 20 }}
-          >
-            {skill}
-          </motion.div>
-        );
-      })}
+          />
+
+          {/* Orbiting skills for this ring */}
+          {orbitSkills.filter(s => s.r === ring).map((skill, index, arr) => {
+            const angle = (index * 360) / arr.length;
+            const getRadius = () => {
+              const base = typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 100;
+              return base * (ring * 0.7 + 0.3);
+            };
+
+            const radius = getRadius();
+            const x = Math.cos((angle - 90) * (Math.PI / 180)) * radius;
+            const y = Math.sin((angle - 90) * (Math.PI / 180)) * radius;
+
+            return (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.5 + index * 0.05, duration: 0.3 }}
+                className="absolute pointer-events-auto"
+                style={{
+                  left: `calc(50% + ${x}px)`,
+                  top: `calc(50% + ${y}px)`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, zIndex: 40 }}
+                  className={`glass-card px-2.5 py-1 md:px-4 md:py-2 rounded-full mono-text text-[9px] md:text-xs whitespace-nowrap border-primary/20 bg-background/40 backdrop-blur-md shadow-lg cursor-default
+                    ${ring === 1 ? 'border-primary/40' : ring === 2 ? 'border-accent/40' : 'border-white/20'}`}
+                >
+                  {/* Counter-rotate text to keep it upright */}
+                  <motion.div
+                    animate={{ rotate: ring % 2 === 0 ? -360 : 360 }}
+                    transition={{ duration: 40 + ring * 10, repeat: Infinity, ease: "linear" }}
+                  >
+                    {skill.name}
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      ))}
+
+      {/* Dynamic Background Blurs */}
+      <div className="absolute w-full h-full flex items-center justify-center pointer-events-none -z-10">
+        <div className="absolute w-64 h-64 bg-primary/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute w-80 h-80 bg-accent/5 rounded-full blur-[120px] animate-pulse-slow" />
+      </div>
     </div>
   );
 };

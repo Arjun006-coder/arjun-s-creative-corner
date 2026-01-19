@@ -68,21 +68,21 @@
 @layer components {
   .glass-card {
     @apply backdrop-blur-xl border border-white/10 bg-card/60;
-    box-shadow: 
+    box-shadow:
       0 0 0 1px hsl(var(--glass-border)),
       0 8px 32px -8px hsl(220 20% 0% / 0.5),
       inset 0 1px 0 0 hsl(220 20% 50% / 0.1);
   }
 
   .glow-text {
-    text-shadow: 
+    text-shadow:
       0 0 20px hsl(var(--glow-primary) / 0.5),
       0 0 40px hsl(var(--glow-primary) / 0.3),
       0 0 60px hsl(var(--glow-primary) / 0.2);
   }
 
   .glow-box {
-    box-shadow: 
+    box-shadow:
       0 0 20px hsl(var(--glow-primary) / 0.3),
       0 0 40px hsl(var(--glow-primary) / 0.2);
   }
@@ -107,10 +107,11 @@
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+    pointer-events: none;
   }
 
   .floating-orb {
-    @apply absolute rounded-full blur-3xl opacity-30 animate-float;
+    @apply absolute rounded-full blur-3xl opacity-30 animate-float pointer-events-none;
   }
 
   .section-padding {
@@ -124,19 +125,25 @@
 
 @layer utilities {
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0) rotate(0deg);
     }
+
     50% {
       transform: translateY(-20px) rotate(5deg);
     }
   }
 
   @keyframes pulse-glow {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 0.3;
       transform: scale(1);
     }
+
     50% {
       opacity: 0.5;
       transform: scale(1.05);
@@ -147,15 +154,19 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
   }
 
   @keyframes gradient-shift {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }

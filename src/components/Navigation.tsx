@@ -28,9 +28,8 @@ const Navigation = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "glass-card py-4" : "py-6"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-card py-4" : "py-6"
+          }`}
       >
         <div className="container flex items-center justify-between">
           <motion.a
@@ -57,7 +56,7 @@ const Navigation = () => {
               </motion.a>
             ))}
             <motion.a
-              href="mailto:arjun1234agrawal@gmail.com"
+              href="#contact"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
@@ -103,10 +102,11 @@ const Navigation = () => {
                 </motion.a>
               ))}
               <motion.a
-                href="mailto:arjun1234agrawal@gmail.com"
+                href="#contact"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
+                onClick={() => setIsMobileOpen(false)}
                 className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium mt-4"
               >
                 Hire Me

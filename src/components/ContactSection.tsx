@@ -41,7 +41,7 @@ const ContactSection = () => {
                 href="mailto:arjun1234agrawal@gmail.com"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors group"
+                className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors group cursor-pointer"
               >
                 <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-6 h-6 text-primary" />
@@ -52,18 +52,22 @@ const ContactSection = () => {
                 </div>
               </motion.a>
 
-              <motion.div
+              <motion.a
+                href="https://www.google.com/maps/search/?api=1&query=Ghaziabad,India"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30"
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors group cursor-pointer relative z-10"
               >
-                <div className="p-3 rounded-xl bg-accent/10">
+                <div className="p-3 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
                   <MapPin className="w-6 h-6 text-accent" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
                   <p className="font-medium text-sm">Ghaziabad, India</p>
                 </div>
-              </motion.div>
+              </motion.a>
             </div>
 
             {/* Social links */}
@@ -76,9 +80,11 @@ const ContactSection = () => {
                 <motion.a
                   key={social.label}
                   href={social.href}
+                  target={social.label !== "Email" ? "_blank" : undefined}
+                  rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-4 rounded-xl bg-secondary/30 hover:bg-primary/10 transition-colors group"
+                  className="p-4 rounded-xl bg-secondary/30 hover:bg-primary/10 transition-colors group cursor-pointer"
                 >
                   <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
                 </motion.a>
@@ -90,7 +96,7 @@ const ContactSection = () => {
               href="mailto:arjun1234agrawal@gmail.com"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box"
+              className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box cursor-pointer"
             >
               <Send className="w-5 h-5" />
               Send me an email
@@ -106,10 +112,10 @@ const ContactSection = () => {
           className="text-center mt-20 text-muted-foreground"
         >
           <p className="mono-text text-sm">
-            Designed & Built by{" "}
-            <span className="text-primary">Arjun Agrawal</span>
+            Designed & Built with ❤️ by{" "}
+            <span className="text-primary font-bold">Arjun Agrawal</span>
           </p>
-          <p className="text-xs mt-2">© 2024 All rights reserved</p>
+          <p className="text-xs mt-2">© 2026 All rights reserved</p>
         </motion.div>
       </div>
     </section>

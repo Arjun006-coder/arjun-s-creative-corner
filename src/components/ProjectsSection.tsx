@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Brain, Users, Car, Globe } from "lucide-react";
+import { ExternalLink, Brain, Users, Car, Globe, Github } from "lucide-react";
 
 const projects = [
   {
@@ -21,6 +21,8 @@ const projects = [
     icon: Users,
     gradient: "from-accent to-pink-400",
     featured: true,
+    vercelLink: "https://civic-eye-rho.vercel.app",
+    githubLink: "https://github.com/Arjun006-coder/CivicEye",
   },
   {
     title: "CareerCraft",
@@ -44,7 +46,7 @@ const projects = [
 
 const ProjectCard = ({ project, index, isInView }: { project: typeof projects[0]; index: number; isInView: boolean }) => {
   const Icon = project.icon;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -55,7 +57,7 @@ const ProjectCard = ({ project, index, isInView }: { project: typeof projects[0]
       <div className="glass-card rounded-2xl p-6 md:p-8 h-full transition-all duration-500 hover:bg-card/80 gradient-border overflow-hidden">
         {/* Gradient background on hover */}
         <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-        
+
         <div className="relative z-10">
           {/* Icon with rotating border */}
           <div className="relative w-14 h-14 mb-6">
@@ -73,7 +75,7 @@ const ProjectCard = ({ project, index, isInView }: { project: typeof projects[0]
             {project.title}
           </h3>
           <p className="text-primary mono-text text-sm mb-4">{project.subtitle}</p>
-          
+
           <p className="text-muted-foreground mb-6 line-clamp-3">
             {project.description}
           </p>
@@ -90,13 +92,31 @@ const ProjectCard = ({ project, index, isInView }: { project: typeof projects[0]
             ))}
           </div>
 
-          {/* View button */}
-          <motion.button
-            whileHover={{ x: 5 }}
-            className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mono-text text-sm"
-          >
-            View Project <ExternalLink className="w-4 h-4" />
-          </motion.button>
+          {/* View buttons */}
+          <div className="flex gap-4">
+            {project.vercelLink && (
+              <motion.a
+                whileHover={{ x: 5 }}
+                href={project.vercelLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mono-text text-sm"
+              >
+                Live Demo <ExternalLink className="w-4 h-4" />
+              </motion.a>
+            )}
+            {project.githubLink && (
+              <motion.a
+                whileHover={{ x: 5 }}
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mono-text text-sm"
+              >
+                GitHub <Github className="w-4 h-4" />
+              </motion.a>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

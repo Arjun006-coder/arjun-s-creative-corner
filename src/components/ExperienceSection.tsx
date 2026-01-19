@@ -50,10 +50,26 @@ const achievements = [
 ];
 
 const certifications = [
-  "AWS Academy Cloud Foundations [148933]",
-  "Introduction to AI – LinkedIn Learning",
-  "AI Developer Series – Coursera",
-  "Java OOP – LinkedIn Learning",
+  {
+    name: "AWS Academy Cloud Foundations [148933]",
+    link: "/certificates/aws_certificate.pdf",
+  },
+  {
+    name: "Introduction to Software Engineering",
+    link: "/certificates/software_engineering_certificate.pdf",
+  },
+  {
+    name: "Skill Data Analyst Internship Certificate",
+    link: "/certificates/skill_data_analyst.pdf",
+  },
+  {
+    name: "Introduction to AI – LinkedIn Learning",
+    link: "https://lnkd.in/ds5wC_-9",
+  },
+  {
+    name: "Java OOP – LinkedIn Learning",
+    link: "https://www.linkedin.com/learning/certificates/9d526c3bbfc073bd5d1ec68047976efb6f68fad54f5165ae0d105efcfa88090d?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BPs5AVIccSo60VpIGnL%2FiWA%3D%3D",
+  },
 ];
 
 const ExperienceSection = () => {
@@ -141,17 +157,20 @@ const ExperienceSection = () => {
             <h3 className="text-2xl font-bold mb-8">Certifications</h3>
             <div className="space-y-4">
               {certifications.map((cert, index) => (
-                <motion.div
-                  key={cert}
+                <motion.a
+                  key={cert.name}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.6 + index * 0.1 }}
                   whileHover={{ x: 5 }}
-                  className="glass-card rounded-xl p-4 flex items-center gap-4"
+                  className="glass-card rounded-xl p-4 flex items-center gap-4 hover:bg-primary/5 transition-all cursor-pointer"
                 >
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent" />
-                  <span className="text-sm">{cert}</span>
-                </motion.div>
+                  <span className="text-sm">{cert.name}</span>
+                </motion.a>
               ))}
             </div>
           </motion.div>
