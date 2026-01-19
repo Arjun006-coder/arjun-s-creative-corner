@@ -72,8 +72,8 @@ const HeroSection = () => {
             transition={{ delay: 0.9 }}
           >
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
+              { icon: Github, href: "https://github.com/Arjun006-coder", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/arjun-agrawal-ab82a5328/", label: "LinkedIn" },
               { icon: Mail, href: "mailto:arjun1234agrawal@gmail.com", label: "Email" },
             ].map((social, index) => (
               <motion.a
@@ -91,7 +91,7 @@ const HeroSection = () => {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          className="absolute bottom-10 left-0 right-0 flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{ 

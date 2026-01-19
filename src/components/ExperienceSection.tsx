@@ -5,6 +5,16 @@ import { Award, Trophy, Medal } from "lucide-react";
 
 const experiences = [
   {
+    title: "Data Analyst Internship",
+    subtitle: "Analytics & Insights",
+    date: "2024",
+    points: [
+      "Analyzed datasets to extract actionable insights for business decisions",
+      "Built data visualizations and dashboards for stakeholder presentations",
+      "Applied statistical methods and data cleaning techniques",
+    ],
+  },
+  {
     title: "Social Internship",
     subtitle: "Accessible Tech Guides Project",
     date: "2024",
@@ -40,6 +50,7 @@ const achievements = [
 ];
 
 const certifications = [
+  "AWS Academy Cloud Foundations [148933]",
   "Introduction to AI – LinkedIn Learning",
   "AI Developer Series – Coursera",
   "Java OOP – LinkedIn Learning",
