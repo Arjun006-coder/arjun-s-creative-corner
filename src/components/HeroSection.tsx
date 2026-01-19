@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-24">
       {/* Animated background orbs */}
       <div className="floating-orb w-96 h-96 bg-primary -top-20 -left-20 animate-pulse-glow" />
       <div className="floating-orb w-80 h-80 bg-accent top-1/3 -right-20 animate-pulse-glow" style={{ animationDelay: '2s' }} />
@@ -56,7 +56,7 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.p 
-            className="text-muted-foreground max-w-xl mx-auto mb-12 text-base md:text-lg"
+            className="text-muted-foreground max-w-xl mx-auto mb-8 text-base md:text-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -64,9 +64,28 @@ const HeroSection = () => {
             Building socially impactful solutions with AI, system design, and modern developer tools.
           </motion.p>
 
+          {/* Resume Download Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mb-8"
+          >
+            <motion.a
+              href="/resume.pdf"
+              download="Arjun_Agrawal_Resume.pdf"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download className="w-5 h-5" />
+              Download Resume
+            </motion.a>
+          </motion.div>
+
           {/* Social links */}
           <motion.div 
-            className="flex justify-center gap-4 mb-16"
+            className="flex justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
@@ -79,6 +98,8 @@ const HeroSection = () => {
               <motion.a
                 key={social.label}
                 href={social.href}
+                target={social.label !== "Email" ? "_blank" : undefined}
+                rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
                 className="glass-card p-4 rounded-xl hover:bg-primary/10 transition-all duration-300 group"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
@@ -88,23 +109,23 @@ const HeroSection = () => {
             ))}
           </motion.div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-10 left-0 right-0 flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ 
-            opacity: { delay: 1.2 },
-            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-          }}
-        >
-          <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-            <span className="text-sm mono-text">Scroll to explore</span>
-            <ArrowDown className="w-5 h-5" />
-          </a>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator - positioned outside container */}
+      <motion.div
+        className="absolute bottom-6 left-0 right-0 flex justify-center z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ 
+          opacity: { delay: 1.2 },
+          y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+        }}
+      >
+        <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+          <span className="text-sm mono-text">Scroll to explore</span>
+          <ArrowDown className="w-5 h-5" />
+        </a>
+      </motion.div>
     </section>
   );
 };
