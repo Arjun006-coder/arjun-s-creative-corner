@@ -1,138 +1,168 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileDown } from "lucide-react";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const HeroSection = () => {
+  // Stagger animation container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-24">
-      {/* Animated background orbs */}
-      <div className="floating-orb w-96 h-96 bg-primary -top-20 -left-20 animate-pulse-glow" />
-      <div className="floating-orb w-80 h-80 bg-accent top-1/3 -right-20 animate-pulse-glow" style={{ animationDelay: '2s' }} />
-      <div className="floating-orb w-64 h-64 bg-primary/50 bottom-20 left-1/4 animate-pulse-glow" style={{ animationDelay: '4s' }} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+      {/* Fine-line geometric accents and coordinates */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute left-[10%] top-0 bottom-0 w-px bg-white" />
+        <div className="absolute right-[10%] top-0 bottom-0 w-px bg-white" />
+        <div className="absolute top-[25%] left-0 right-0 h-px bg-white" />
+        <div className="absolute bottom-[25%] left-0 right-0 h-px bg-white" />
+      </div>
 
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }}
-      />
+      <div className="absolute top-28 left-[12%] text-[9px] font-mono tracking-widest text-muted-foreground/50 z-10 select-none">
+        SYS.LOC: 28.6692° N, 77.4538° E
+      </div>
+      <div className="absolute bottom-28 right-[12%] text-[9px] font-mono tracking-widest text-muted-foreground/50 z-10 select-none">
+        PORTFOLIO // V3.0
+      </div>
 
-      <div className="container relative z-10 text-center">
+      <div className="container max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto"
         >
-          <motion.p
-            className="mono-text text-primary mb-4 text-sm md:text-base tracking-widest"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            &lt;hello world /&gt;
-          </motion.p>
-
-          <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            I'm{" "}
-            <span className="gradient-text glow-text">
-              Arjun Agrawal
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            Computer Science Student • AI Enthusiast • Problem Solver
-          </motion.p>
-
-          <motion.p
-            className="text-muted-foreground max-w-xl mx-auto mb-8 text-base md:text-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-          >
-            Building socially impactful solutions with AI, system design, and modern developer tools.
-          </motion.p>
-
+          {/* Subtitle Tag */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md mb-8"
           >
-            <motion.a
-              href="/resume.pdf"
-              download="Arjun_Agrawal_Resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold transition-all duration-300 hover:opacity-90 glow-box w-full sm:w-auto justify-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download className="w-5 h-5" />
-              Download Resume
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card border-primary/20 text-foreground font-semibold transition-all duration-300 hover:bg-primary/10 w-full sm:w-auto justify-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Mail className="w-5 h-5" />
-              Get in Touch
-            </motion.a>
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-muted-foreground/80">
+              Computer Science & Applied AI
+            </span>
           </motion.div>
 
-          {/* Social links */}
+          {/* Luxury Serif Heading */}
+          <h1 className="text-6xl sm:text-8xl md:text-9xl font-light tracking-tight text-white mb-8 select-none leading-none">
+            <motion.span
+              variants={itemVariants}
+              className="block font-editorial font-light"
+            >
+              Crafting
+            </motion.span>
+            <motion.span
+              variants={itemVariants}
+              className="block font-editorial italic text-primary"
+            >
+              Intelligent
+            </motion.span>
+            <motion.span
+              variants={itemVariants}
+              className="block font-editorial font-light tracking-tight"
+            >
+              Systems
+            </motion.span>
+          </h1>
+
+          {/* Intro Description */}
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg md:text-xl text-muted-foreground/80 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
+          >
+            Arjun Agrawal is a developer specializing in AI/ML, computer vision, and data analytics, bridging advanced algorithms with elegant, finished user experiences.
+          </motion.p>
+
+          {/* Action CTAs */}
           <motion.div
-            className="flex justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
+            <a
+              href="/resume.pdf"
+              download="Arjun_Agrawal_Resume.pdf"
+              className="w-full sm:w-auto"
+            >
+              <HoverBorderGradient
+                containerClassName="rounded-full w-full"
+                className="bg-white text-black hover:bg-white/95 text-sm font-semibold tracking-wider flex items-center justify-center gap-2.5 py-3.5 px-8 rounded-full shadow-lg"
+              >
+                <FileDown className="w-4 h-4" />
+                Download CV
+              </HoverBorderGradient>
+            </a>
+            
+            <a
+              href="#contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-8 rounded-full border border-white/10 hover:border-white/20 bg-white/5 backdrop-blur-md text-sm font-medium tracking-wider hover:bg-white/10 transition-all duration-300"
+            >
+              <Mail className="w-4 h-4 text-muted-foreground" />
+              Get in Touch
+            </a>
+          </motion.div>
+
+          {/* Socials */}
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center gap-5"
           >
             {[
               { icon: Github, href: "https://github.com/Arjun006-coder", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/arjun-agrawal-ab82a5328/", label: "LinkedIn" },
               { icon: Mail, href: "mailto:arjun1234agrawal@gmail.com", label: "Email" },
-            ].map((social, index) => (
+            ].map((social) => (
               <motion.a
                 key={social.label}
                 href={social.href}
                 target={social.label !== "Email" ? "_blank" : undefined}
                 rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                className="glass-card p-4 rounded-xl hover:bg-primary/10 transition-all duration-300 group"
-                whileHover={{ scale: 1.1, y: -5 }}
+                className="w-10 h-10 rounded-full border border-white/5 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <social.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                <social.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </motion.a>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator - positioned outside container */}
+      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-6 left-0 right-0 flex justify-center z-20"
+        className="absolute bottom-8 left-0 right-0 flex justify-center z-10 pointer-events-none"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{
-          opacity: { delay: 1.2 },
-          y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-        }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
       >
-        <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-          <span className="text-sm mono-text">Scroll to explore</span>
-          <ArrowDown className="w-5 h-5" />
-        </a>
+        <motion.a 
+          href="#about" 
+          className="pointer-events-auto flex flex-col items-center gap-2 group text-muted-foreground hover:text-white transition-colors"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em]">Explore</span>
+          <ArrowDown className="w-3.5 h-3.5 group-hover:text-primary transition-colors" />
+        </motion.a>
       </motion.div>
     </section>
   );

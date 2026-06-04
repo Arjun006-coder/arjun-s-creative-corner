@@ -1,75 +1,95 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Trophy, Medal } from "lucide-react";
+import { Award, Briefcase, Calendar, Trophy, ShieldCheck, ExternalLink } from "lucide-react";
 
 const experiences = [
   {
-    title: "Data Analyst Internship",
-    subtitle: "Analytics & Insights",
-    date: "2024",
+    role: "Data Analyst Intern",
+    company: "3Skill",
+    location: "Remote",
+    period: "Oct 2025 - Dec 2025",
     points: [
-      "Analyzed datasets to extract actionable insights for business decisions",
-      "Built data visualizations and dashboards for stakeholder presentations",
-      "Applied statistical methods and data cleaning techniques",
-    ],
-  },
-  {
-    title: "Social Internship",
-    subtitle: "Accessible Tech Guides Project",
-    date: "2024",
-    points: [
-      "Created bilingual guides for UPI apps, IRCTC, WhatsApp, and telemedicine",
-      "Compiled 4-page impact report with user feedback and geo-tagged evidence",
-    ],
-  },
-];
-
-const achievements = [
-  {
-    icon: Trophy,
-    title: "Winner",
-    subtitle: "Internal Entrepreneurship Event",
-    description: "CareerCraft - AI Career Planner",
-    gradient: "from-yellow-400 to-orange-400",
-  },
-  {
-    icon: Medal,
-    title: "Top 45 / 610+ Teams",
-    subtitle: "Smart India Hackathon",
-    description: "CivicEye - AI Civic Reporting",
-    gradient: "from-primary to-cyan-400",
-  },
-  {
-    icon: Award,
-    title: "9.27 CGPA",
-    subtitle: "First Year Performance",
-    description: "KIET Group of Institutions",
-    gradient: "from-accent to-pink-400",
-  },
+      "Evaluated over 5000 structured records using Python (Pandas, NumPy) and SQL, identifying critical trends to facilitate data-driven decision-making.",
+      "Constructed custom dashboards and visual reports with Power BI and Tableau, elevating data analysis effectiveness."
+    ]
+  }
 ];
 
 const certifications = [
   {
-    name: "AWS Academy Cloud Foundations [148933]",
-    link: "/certificates/aws_certificate.pdf",
+    name: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "Mar 2026",
+    validity: "Valid 3 Years",
+    link: "https://aws.amazon.com/verification"
+  },
+  {
+    name: "Network Technician Career Path",
+    issuer: "CISCO",
+    date: "Apr 2026",
+    validity: "Lifetime",
+    link: "https://www.netacad.com"
+  },
+  {
+    name: "Java Object-Oriented Programming",
+    issuer: "LinkedIn Learning",
+    date: "Oct 2025",
+    validity: "Lifetime",
+    link: "https://www.linkedin.com/learning/certificates/9d526c3bbfc073bd5d1ec68047976efb6f68fad54f5165ae0d105efcfa88090d"
   },
   {
     name: "Introduction to Software Engineering",
-    link: "/certificates/software_engineering_certificate.pdf",
+    issuer: "IBM - Coursera",
+    date: "Nov 2025",
+    validity: "Lifetime",
+    link: "https://www.coursera.org"
+  }
+];
+
+const hackathons = [
+  {
+    name: "Developers Night (iOS Hackathon)",
+    role: "Runner-Up",
+    location: "KIET, Ghaziabad",
+    date: "Feb 4, 2026",
+    type: "runner-up"
   },
   {
-    name: "Skill Data Analyst Internship Certificate",
-    link: "/certificates/skill_data_analyst.pdf",
+    name: "Hack Heist",
+    role: "Runner Up",
+    location: "MIET, Meerut",
+    date: "March 27, 2026",
+    type: "runner-up"
   },
   {
-    name: "Introduction to AI – LinkedIn Learning",
-    link: "https://lnkd.in/ds5wC_-9",
+    name: "Smart India Hackathon 2025",
+    role: "College Internal Winner",
+    location: "KIET, Ghaziabad",
+    date: "Sept 2025",
+    type: "winner"
   },
   {
-    name: "Java OOP – LinkedIn Learning",
-    link: "https://www.linkedin.com/learning/certificates/9d526c3bbfc073bd5d1ec68047976efb6f68fad54f5165ae0d105efcfa88090d?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BPs5AVIccSo60VpIGnL%2FiWA%3D%3D",
+    name: "Innotech 2025",
+    role: "Participant",
+    location: "KIET, Ghaziabad",
+    date: "Nov 14, 2025",
+    type: "participant"
   },
+  {
+    name: "Innovision Ideathon",
+    role: "Participant",
+    location: "TIIPS, Ghaziabad",
+    date: "Feb 19, 2026",
+    type: "participant"
+  },
+  {
+    name: "Spark Hack",
+    role: "Participant",
+    location: "Sanskriti University, Mathura",
+    date: "April 1, 2026",
+    type: "participant"
+  }
 ];
 
 const ExperienceSection = () => {
@@ -77,100 +97,133 @@ const ExperienceSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="section-padding relative overflow-hidden">
-      <div className="floating-orb w-80 h-80 bg-accent/20 -left-40 bottom-0" />
-
-      <div className="container relative z-10" ref={ref}>
+    <section id="experience" className="section-padding relative overflow-hidden bg-black/20">
+      <div className="container relative z-10 mx-auto" ref={ref}>
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.8 }}
+          className="mb-20"
         >
-          <p className="mono-text text-primary text-sm mb-2">// journey</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Experience & <span className="gradient-text">Achievements</span>
+          <p className="mono-label mb-3">// professional timeline</p>
+          <h2 className="text-4xl md:text-6xl font-light tracking-tight text-white leading-tight">
+            Experience & <span className="font-editorial italic text-primary">credentials</span>
           </h2>
+          <div className="line-accent" />
         </motion.div>
 
-        {/* Achievements Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {achievements.map((achievement, index) => {
-            const Icon = achievement.icon;
-            return (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.15 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card rounded-2xl p-6 text-center group gradient-border"
-              >
-                <motion.div
-                  className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${achievement.gradient} flex items-center justify-center`}
-                  whileHover={{ rotate: 12 }}
-                >
-                  <Icon className="w-8 h-8 text-white" />
-                </motion.div>
-                <h3 className="font-bold text-lg mb-1">{achievement.title}</h3>
-                <p className="text-primary mono-text text-sm mb-2">{achievement.subtitle}</p>
-                <p className="text-muted-foreground text-sm">{achievement.description}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Experience Timeline */}
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Work Experience */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-6 space-y-8"
           >
-            <h3 className="text-2xl font-bold mb-8">Experience</h3>
-            {experiences.map((exp, index) => (
-              <div key={exp.title} className="relative pl-8 pb-8 border-l-2 border-primary/30 last:pb-0">
-                <div className="absolute left-0 top-0 w-3 h-3 rounded-full bg-primary -translate-x-[7px] glow-box" />
-                <div className="glass-card rounded-xl p-6">
-                  <span className="mono-text text-primary text-sm">{exp.date}</span>
-                  <h4 className="font-bold text-lg mt-1">{exp.title}</h4>
-                  <p className="text-muted-foreground text-sm mb-4">{exp.subtitle}</p>
-                  <ul className="space-y-2">
-                    {exp.points.map((point, i) => (
-                      <li key={i} className="text-muted-foreground text-sm flex items-start gap-2">
-                        <span className="text-primary mt-1.5">▹</span>
-                        {point}
+            <h3 className="text-xl font-mono uppercase tracking-[0.15em] text-white flex items-center gap-3 mb-6">
+              <Briefcase className="w-5 h-5 text-primary" />
+              <span>Professional History</span>
+            </h3>
+
+            <div className="space-y-6">
+              {experiences.map((exp, idx) => (
+                <div key={idx} className="classy-card p-8 border border-white/5 rounded-2xl bg-white/[0.01]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                    <div>
+                      <h4 className="text-2xl font-semibold text-white font-sans">{exp.role}</h4>
+                      <p className="text-sm text-primary font-mono mt-1">{exp.company} • {exp.location}</p>
+                    </div>
+                    <span className="text-xs font-mono text-muted-foreground flex items-center gap-1.5 self-start sm:self-center">
+                      <Calendar className="w-3.5 h-3.5" />
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  <ul className="space-y-4">
+                    {exp.points.map((pt, pIdx) => (
+                      <li key={pIdx} className="text-sm font-light text-muted-foreground leading-relaxed flex items-start gap-3">
+                        <span className="text-primary mt-1">▪</span>
+                        <span>{pt}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+              ))}
+            </div>
+            
+            {/* Hackathons Log */}
+            <div className="pt-8">
+              <h3 className="text-xl font-mono uppercase tracking-[0.15em] text-white flex items-center gap-3 mb-6">
+                <Trophy className="w-5 h-5 text-primary" />
+                <span>Hackathons & Awards</span>
+              </h3>
+              
+              <div className="grid sm:grid-cols-2 gap-4">
+                {hackathons.map((hack, idx) => (
+                  <div 
+                    key={idx} 
+                    className="p-5 border border-white/5 bg-white/[0.01] rounded-xl flex flex-col justify-between hover:border-white/15 transition-all"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ${
+                          hack.type === "winner" 
+                            ? "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400" 
+                            : hack.type === "runner-up"
+                            ? "bg-primary/10 border border-primary/20 text-primary"
+                            : "bg-white/5 border border-white/5 text-muted-foreground"
+                        }`}>
+                          {hack.role}
+                        </span>
+                        <span className="text-[10px] font-mono text-muted-foreground/60">{hack.date}</span>
+                      </div>
+                      <h4 className="text-sm font-semibold text-white font-sans mt-2">{hack.name}</h4>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground/60 mt-3 font-light">{hack.location}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </motion.div>
 
-          {/* Certifications */}
+          {/* Right Column: Certifications */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="lg:col-span-6 space-y-8"
           >
-            <h3 className="text-2xl font-bold mb-8">Certifications</h3>
+            <h3 className="text-xl font-mono uppercase tracking-[0.15em] text-white flex items-center gap-3 mb-6">
+              <Award className="w-5 h-5 text-primary" />
+              <span>Certifications</span>
+            </h3>
+
             <div className="space-y-4">
-              {certifications.map((cert, index) => (
-                <motion.a
-                  key={cert.name}
+              {certifications.map((cert, idx) => (
+                <a
+                  key={idx}
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  whileHover={{ x: 5 }}
-                  className="glass-card rounded-xl p-4 flex items-center gap-4 hover:bg-primary/5 transition-all cursor-pointer"
+                  className="classy-card p-6 border border-white/5 rounded-xl bg-white/[0.01] hover:bg-white/[0.02] hover:border-white/15 flex items-center justify-between group transition-all"
                 >
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent" />
-                  <span className="text-sm">{cert.name}</span>
-                </motion.a>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-colors">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-white font-sans group-hover:text-primary transition-colors">
+                        {cert.name}
+                      </h4>
+                      <p className="text-xs text-muted-foreground mt-0.5">{cert.issuer} • <span className="font-mono text-[10px] text-primary">{cert.date}</span></p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 self-center text-muted-foreground group-hover:text-white transition-colors">
+                    <span className="text-[10px] font-mono hidden sm:inline">{cert.validity}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </div>
+                </a>
               ))}
             </div>
           </motion.div>
