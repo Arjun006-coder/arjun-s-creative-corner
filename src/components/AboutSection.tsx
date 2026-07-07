@@ -9,8 +9,8 @@ const AboutSection = () => {
 
   const stats = [
     { value: "9.30", label: "Current CGPA" },
-    { value: "3 Skill", label: "Data Internship" },
-    { value: "3+", label: "Core AI Projects" },
+    { value: "3", label: "Internships" },
+    { value: "7+", label: "Certifications" },
   ];
 
   const education = [
@@ -74,11 +74,11 @@ const AboutSection = () => {
               </h3>
               
               <p className="text-muted-foreground leading-relaxed font-light text-sm sm:text-base">
-                I am a second-year Computer Science undergraduate with hands-on experience in machine learning, data analytics, and full-stack development. Guided by industry expert mentors from Xebia, I have designed systems ranging from computer vision modules to generative AI workflows.
+                I am a Computer Science undergraduate with hands-on experience in AI-driven business intelligence, data engineering, and full-stack development. My recent work spans web scraping pipelines, analytics dashboards, and decision-support tools across internships at Akiya2.0, TBI GEU, and 3Skill.
               </p>
               
               <p className="text-muted-foreground leading-relaxed font-light text-sm sm:text-base">
-                I focus on writing clean, scalable code and extracting patterns from complex datasets. My objective is to bridge the gap between academic research and deployable, real-world technology solutions.
+                I focus on writing clean, scalable code and turning complex datasets into practical, real-world technology solutions. My goal is to build dependable systems that connect intelligent analysis with measurable impact.
               </p>
             </div>
 

@@ -5,13 +5,34 @@ import { Award, Briefcase, Calendar, Trophy, ShieldCheck, ExternalLink } from "l
 
 const experiences = [
   {
+    role: "Data Collection and Scraping Engineer",
+    company: "Akiya2.0",
+    location: "Remote",
+    period: "Aug 2026",
+    points: [
+      "Accepted a role at Akiya2.0, a Japanese proptech startup focused on revitalizing Japan's vacant akiya property market by connecting buyers with underutilized real estate nationwide.",
+      "Built automated Python web scraping pipelines to collect, clean, and structure large-scale Japanese real estate listings for machine learning models and analytics dashboards."
+    ]
+  },
+  {
+    role: "AI Enabled Business Intelligence Intern",
+    company: "TBI GEU, Graphic Era Univ.",
+    location: "Remote",
+    period: "Jun 2026 - Sep 2026",
+    points: [
+      "Developed AI-driven BI dashboards and decision-support tools using Python, SQL, and Power BI to surface actionable insights from structured business datasets.",
+      "Conducted end-to-end data analysis on a regional homestay accommodation dataset, including exploratory profiling, occupancy modeling, and dashboard development to support pricing decisions.",
+      "Collaborated with cross-functional teams to prototype intelligent reporting pipelines that integrate LLM-based analytics with traditional BI workflows."
+    ]
+  },
+  {
     role: "Data Analyst Intern",
     company: "3Skill",
     location: "Remote",
     period: "Oct 2025 - Dec 2025",
     points: [
-      "Evaluated over 5000 structured records using Python (Pandas, NumPy) and SQL, identifying critical trends to facilitate data-driven decision-making.",
-      "Constructed custom dashboards and visual reports with Power BI and Tableau, elevating data analysis effectiveness."
+      "Analyzed more than 5,000 structured records using Python (Pandas, NumPy) and SQL to identify key trends and support data-driven decision-making.",
+      "Designed interactive Power BI and Tableau dashboards covering the full dataset, reducing manual reporting effort and giving stakeholders faster access to insights."
     ]
   }
 ];
@@ -22,28 +43,49 @@ const certifications = [
     issuer: "Amazon Web Services",
     date: "Mar 2026",
     validity: "Valid 3 Years",
-    link: "https://aws.amazon.com/verification"
+    link: "/certificates/aws_certificate.pdf"
+  },
+  {
+    name: "Develop Solutions for Microsoft Azure",
+    issuer: "Microsoft",
+    date: "Jun 2026",
+    validity: "Lifetime Validity",
+    link: "https://learn.microsoft.com/certifications/"
+  },
+  {
+    name: "Cybersecurity Essentials",
+    issuer: "Cisco Networking Academy",
+    date: "Jun 2026",
+    validity: "Lifetime Validity",
+    link: "https://www.netacad.com/courses/cybersecurity/essentials"
+  },
+  {
+    name: "Getting Started with Cisco Packet Tracer",
+    issuer: "Cisco Networking Academy",
+    date: "Jun 2026",
+    validity: "Lifetime Validity",
+    link: "https://www.netacad.com/courses/packet-tracer"
   },
   {
     name: "Network Technician Career Path",
-    issuer: "CISCO",
+    issuer: "Cisco Networking Academy",
     date: "Apr 2026",
-    validity: "Lifetime",
-    link: "https://www.netacad.com"
+    validity: "Lifetime Validity",
+    link: "https://www.netacad.com/courses/network-technician"
   },
   {
     name: "Java Object-Oriented Programming",
     issuer: "LinkedIn Learning",
     date: "Oct 2025",
-    validity: "Lifetime",
+    validity: "Lifetime Validity",
     link: "https://www.linkedin.com/learning/certificates/9d526c3bbfc073bd5d1ec68047976efb6f68fad54f5165ae0d105efcfa88090d"
   },
   {
     name: "Introduction to Software Engineering",
     issuer: "IBM - Coursera",
     date: "Nov 2025",
-    validity: "Lifetime",
-    link: "https://www.coursera.org"
+    validity: "Lifetime Validity",
+    link: "/certificates/software_engineering_certificate.pdf"
   }
 ];
 
@@ -151,40 +193,6 @@ const ExperienceSection = () => {
                 </div>
               ))}
             </div>
-            
-            {/* Hackathons Log */}
-            <div className="pt-8">
-              <h3 className="text-xl font-mono uppercase tracking-[0.15em] text-white flex items-center gap-3 mb-6">
-                <Trophy className="w-5 h-5 text-primary" />
-                <span>Hackathons & Awards</span>
-              </h3>
-              
-              <div className="grid sm:grid-cols-2 gap-4">
-                {hackathons.map((hack, idx) => (
-                  <div 
-                    key={idx} 
-                    className="p-5 border border-white/5 bg-white/[0.01] rounded-xl flex flex-col justify-between hover:border-white/15 transition-all"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ${
-                          hack.type === "winner" 
-                            ? "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400" 
-                            : hack.type === "runner-up"
-                            ? "bg-primary/10 border border-primary/20 text-primary"
-                            : "bg-white/5 border border-white/5 text-muted-foreground"
-                        }`}>
-                          {hack.role}
-                        </span>
-                        <span className="text-[10px] font-mono text-muted-foreground/60">{hack.date}</span>
-                      </div>
-                      <h4 className="text-sm font-semibold text-white font-sans mt-2">{hack.name}</h4>
-                    </div>
-                    <p className="text-[11px] text-muted-foreground/60 mt-3 font-light">{hack.location}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           {/* Right Column: Certifications */}
@@ -225,6 +233,39 @@ const ExperienceSection = () => {
                   </div>
                 </a>
               ))}
+            </div>
+
+            <div className="pt-8">
+              <h3 className="text-xl font-mono uppercase tracking-[0.15em] text-white flex items-center gap-3 mb-6">
+                <Trophy className="w-5 h-5 text-primary" />
+                <span>Hackathons & Awards</span>
+              </h3>
+              
+              <div className="grid sm:grid-cols-2 gap-4">
+                {hackathons.map((hack, idx) => (
+                  <div 
+                    key={idx} 
+                    className="p-5 border border-white/5 bg-white/[0.01] rounded-xl flex flex-col justify-between hover:border-white/15 transition-all"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ${
+                          hack.type === "winner" 
+                            ? "bg-yellow-500/10 border border-yellow-500/20 text-yellow-400" 
+                            : hack.type === "runner-up"
+                            ? "bg-primary/10 border border-primary/20 text-primary"
+                            : "bg-white/5 border border-white/5 text-muted-foreground"
+                        }`}>
+                          {hack.role}
+                        </span>
+                        <span className="text-[10px] font-mono text-muted-foreground/60">{hack.date}</span>
+                      </div>
+                      <h4 className="text-sm font-semibold text-white font-sans mt-2">{hack.name}</h4>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground/60 mt-3 font-light">{hack.location}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

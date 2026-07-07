@@ -103,9 +103,9 @@ const Index = () => {
         <Navigation />
         <HeroSection />
         <AboutSection />
+        <ExperienceSection />
         <ProjectsSection />
         <SkillsSection />
-        <ExperienceSection />
         <ContactSection />
       </div>
     </div>

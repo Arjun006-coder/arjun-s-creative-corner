@@ -90,7 +90,7 @@ const HeroSection = () => {
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-muted-foreground/80 font-light max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            Arjun Agrawal is a developer specializing in AI/ML, computer vision, and data analytics, bridging advanced algorithms with elegant, finished user experiences.
+            Arjun Agrawal is a developer specializing in applied AI, data analytics, and business intelligence, building thoughtful systems that turn information into action.
           </motion.p>
 
           {/* Action CTAs */}
