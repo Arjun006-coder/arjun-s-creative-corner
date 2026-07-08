@@ -31,7 +31,7 @@ const projects = [
     duration: "2 Months",
     teamSize: "Team of 4",
     githubLink: "https://github.com/Arjun006-coder",
-    vercelLink: "https://arjun-s-creative-corner.vercel.app",
+    vercelLink: "https://swift-notes2-0-web.vercel.app/",
     images: [
       "/projectimages/swiftnotes/Screenshot (135).png",
       "/projectimages/swiftnotes/Screenshot 2026-06-04 181713.png",
